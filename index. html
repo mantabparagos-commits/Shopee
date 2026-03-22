@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: black;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* LOADING */
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    z-index: 10;
+}
+
+/* MAIN */
+#main {
+    display: none;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 40px;
+    animation: fade 2s;
+}
+
+p {
+    width: 80%;
+    margin: auto;
+    font-size: 18px;
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    background: pink;
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* SLIDESHOW */
+.slideshow img {
+    width: 250px;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: none;
+}
+
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* HEART */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: pink;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+</style>
+
+</head>
+<body>
+
+<div id="loading">Loading Love... 💖</div>
+
+<div id="main">
+    <h1>Happy Birthday My Love 💖</h1>
+
+    <div class="slideshow">
+        <img src="https://via.placeholder.com/250" class="slide">
+        <img src="https://via.placeholder.com/250/ff69b4" class="slide">
+        <img src="https://via.placeholder.com/250/ffc0cb" class="slide">
+    </div>
+
+    <p id="text"></p>
+
+    <button onclick="openGift()">Open Your Gift 🎁</button>
+</div>
+
+<audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<script>
+// LOADING
+setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("main").style.display = "block";
+}, 2500);
+
+// TYPE TEXT
+const message = "You are my happiness, my love, and my everything. I love you forever 💕";
+let i = 0;
+
+function typing() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typing, 50);
+    }
+}
+setTimeout(typing, 3000);
+
+// SLIDESHOW
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide() {
+    slides.forEach(s => s.style.display = "none");
+    index++;
+    if (index > slides.length) index = 1;
+    slides[index - 1].style.display = "block";
+}
+setInterval(showSlide, 2000);
+
+// GIFT
+function openGift() {
+    alert("Surprise 💖 I LOVE YOU FOREVER!");
+}
+
+// HEART EFFECT
+function heart() {
+    const h = document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML = "💖";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (Math.random()*3+2)+"s";
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),5000);
+}
+setInterval(heart, 300);
+</script>
+
+</body>
+</html>
